@@ -47,6 +47,7 @@ POST参数:
             5.1.1 build_id(本地软件版本1，2，3)
             5.1.2 force(是否强制更新)
             5.1.3 update_log(更新文案)
+            5.1.4 version_url(更新版本的地址)
         5.2 android
 - 城市列表
 
