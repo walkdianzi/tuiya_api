@@ -41,8 +41,13 @@ POST参数:
     1. service_phone(客服电话)
     2. app_comment_url(app评论链接)
     3. about_url(关于我们的url链接)
-    4. Disclaimer_url(免责声明url链接)
-
+    4. disclaimer_url(免责声明url链接)
+    5. version
+        5.1 ios
+            5.1.1 build_id(本地软件版本1，2，3)
+            5.1.2 force(是否强制更新)
+            5.1.3 update_log(更新文案)
+        5.2 android
 - 城市列表
 
 URL: /api?m=city_list  
