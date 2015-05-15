@@ -1,4 +1,4 @@
-- 数据格式
+- ###数据格式###
 
 请求都附上sid:  (session)  
 服务器返回数据为JSON：
@@ -11,9 +11,10 @@
     info: 字符串类型，通常是一些提示性信息，如"登录成功"，"字段不能为空"等等；
     data: 有效数据，类型不定
     status: 整型，0通常表示合法或成功的状态，非零一般表示非法或失败
-    
 
-- 设置
+-----
+
+- ###设置###
 
 URL: /api?m=config  
 POST参数:
@@ -26,30 +27,25 @@ POST参数:
         1.1 session_id(session id)
         1.2 city_id(选择城市id)
         1.3 city_name(选择城市)
-    2. is_update(是否更新)
+    2. config(如果为空就不用更新,不为空有内容则更新)
+        2.1 app_setting(软件内部的一些设置)
+            2.1.1 service_phone(客服电话)
+            2.1.2 app_comment_url(app评论链接)
+            2.1.3 about_url(关于我们的url链接)
+            2.1.4 disclaimer_url(免责声明url链接)
+            2.1.5 version
+                5.1 ios
+                    5.1.1 build_id(本地软件版本1，2，3)
+                    5.1.2 force(是否强制更新)
+                    5.1.3 update_log(更新文案)
+                    5.1.4 version_url(更新版本的地址)
+                5.2 android
     3. timestamp(新的时间戳)
 
-- app的一些设置信息
+-----
+#地址部分#
 
-URL: /api?m=app_setting  
-POST参数:
-
-    默认
-
-返回值:
-
-    1. service_phone(客服电话)
-    2. app_comment_url(app评论链接)
-    3. about_url(关于我们的url链接)
-    4. disclaimer_url(免责声明url链接)
-    5. version
-        5.1 ios
-            5.1.1 build_id(本地软件版本1，2，3)
-            5.1.2 force(是否强制更新)
-            5.1.3 update_log(更新文案)
-            5.1.4 version_url(更新版本的地址)
-        5.2 android
-- 城市列表
+- ###城市列表###
 
 URL: /api?m=city_list  
 POST参数:
@@ -66,8 +62,9 @@ POST参数:
     2. city_list(城市列表)
         2.1 city_id(城市id)
         2.2 city_name(城市)
-
-- 选择城市
+        2.3 city_pingyin(拼音)
+        
+- ###选择城市###
 
 URL: /api?m=city_select  
 POST参数:
@@ -78,56 +75,7 @@ POST参数:
 
     默认
 
-- 获取验证码接口
-
-URL: /api?m=get_code  
-POST参数:
- 
-    1. phone（手机号码）
-
-返回值:
-
-    默认
-
-- 登录接口
-
-URL: /api?m=signin  
-POST参数:
-
-    1. phone(手机号)
-    2. code(验证码)
-
-返回值:
-
-    1. status(1为登录错误)
-    2. info(错误信息)
-
-- 个人信息
-
-URL: /api?m=userinfo  
-POST参数:
-
-    默认
-
-返回值:
-
-    1. avatar(头像URL)
-    2. username(用户名)
-    3. phone(手机号)
-
-- 修改个人信息
-
-URL: /api?m=userinfo_edit  
-POST参数:
-
-    1. avatar(头像base64编码, 空为无效)
-    2. username(用户名, 空为无效)
-
-返回值:
-
-    默认
-
-- 地址列表
+- ###地址列表###
 
 URL: /api?m=addr_list  
 POST参数:
@@ -138,13 +86,14 @@ POST参数:
 
     1. pages(总页数)
     2. result(结果)
-        2.1 addr(地址)
-        2.2 receiver(收件人)
-        2.3 phone(联系电话)
-        2.4 is_default(是否默认地址)
-        2.5 addr_id(地址id)
+        2.1 city_area(区域地址)
+        2.2 addr(详细地址)
+        2.3 receiver(收件人)
+        2.4 phone(联系电话)
+        2.5 is_default(是否默认地址)
+        2.6 addr_id(地址id)
 
-- 删除地址
+- ###删除地址###
 
 URL: /api?m=addr_delete  
 POST参数:
@@ -155,7 +104,7 @@ POST参数:
 
     默认
 
-- 区域地址
+- ###区域地址###
 
 URL: /api?m=addr_area_list  
 POST参数:
@@ -178,20 +127,21 @@ POST参数:
         2.4 area_name
 
 
-- 添加地址
+- ###添加地址###
 
 URL: /api?m=addr_add  
 POST参数:
     
     1. receiver(收件人)
     2. phone(联系电话)
-    3. addr(地址)
+    3. city_area(城市区域)
+    4. addr(详细地址)
 
 返回值:
 
     默认
 
-- 设置默认地址
+- ###设置默认地址###
 
 URL: /api?m=addr_set_default  
 POST参数:
@@ -201,8 +151,42 @@ POST参数:
 返回值:
 
     默认
+    
+-----
 
-- 退出登录
+#登录部分#
+
+- ###获取验证码接口###
+
+URL: /api?m=get_code  
+POST参数:
+ 
+    1. phone（手机号码）
+
+返回值:
+
+    默认
+
+- ###登录接口###
+
+URL: /api?m=signin  
+POST参数:
+
+    1. phone(手机号)
+    2. code(验证码)
+
+返回值:
+
+    1. status(1为登录错误)
+    2. info(错误信息)
+    3. data
+        3.1 userinfo
+            3.1.1 avatar(头像URL)
+            3.1.2 username(用户名)
+            3.1.3 phone(手机号) 
+            3.1.4 user_id(用户id)
+        
+- ###退出登录###
 
 URL: /api?m=signout  
 POST参数:
@@ -212,8 +196,42 @@ POST参数:
 返回值:
 
     默认
+    
+-----
 
-- 首页服务项目列表
+#个人信息部分#
+
+- ###个人信息###
+
+URL: /api?m=userinfo  
+POST参数:
+
+    默认
+
+返回值:
+
+    1. avatar(头像URL)
+    2. username(用户名)
+    3. phone(手机号)
+    4. user_id(用户id)
+    
+- ###修改个人信息###
+
+URL: /api?m=userinfo_edit  
+POST参数:
+
+    1. avatar(头像base64编码, 空为无效)
+    2. username(用户名, 空为无效)
+
+返回值:
+
+    1. avatar(新头像url)
+    
+-----
+
+#服务相关部分#
+
+- ###首页服务项目列表###
 
 URL: /api?m=serve_list  
 POST参数:
@@ -234,7 +252,7 @@ POST参数:
     10.comment_number(评论数)
     11.least_number(最少起订数量)
 
-- 评论列表
+- ###评论列表###
 
 URL: /api?m=comment_list  
 POST参数:
@@ -252,7 +270,7 @@ POST参数:
         2.4 comment_content(评论内容)
 
 
-- 服务项目下单时的信息
+- ###服务项目下单时的信息###
 
 URL: /api?m=serve_order_info  
 POST参数:
@@ -271,14 +289,14 @@ POST参数:
         2.4 addr_id(地址id)
 
 
-- 提交订单
+- ###提交订单###
 URL: /api?m=submit_order  
 POST参数:
 
     1. serve_id(服务id)
     2. date_time(预约时间)
     3. addr_id(地址id)
-    4. pay_type(支付方式,int)
+    4. pay_type(支付方式,int 1.微信 2.支付宝)
     5. number(预定的数量)
 
 返回值:
@@ -294,12 +312,12 @@ POST参数:
     5. timestamp(时间戳，防重发)
     6. sign(商家根据微信开放平台文档对数据做的签名)
 
-- 订单列表
+- ###订单列表###
 
 URL: /api?m=order_list  
 POST参数:
 
-    1. status(1.完成 2.进行中)
+    1. status(1.进行中 2.已完成)
     2. page
 
 返回值:
@@ -312,14 +330,17 @@ POST参数:
     6. serve_time(服务需要的时间)
     7. serve_id(服务项目id)
     8. price(总价)
-    9. status(订单状态)
-    10. addr_info(服务地址信息)
-        10.1 addr(地址)
-        10.2 receiver(收件人)
-        10.3 phone(联系电话)
-        10.4 addr_id(地址id)
+    9. status(订单状态 1.等待服务 2.待评价 3.评价完成)
+    10.order_count(购买的份数)
+    11.pay_type(支付方式)
+    12.addr_info(服务地址信息)
+        12.1 city_area(城市区域)
+        12.1 addr(详细地址)
+        12.2 receiver(收件人)
+        12.3 phone(联系电话)
+        12.4 addr_id(地址id)
 
-- 评价订单
+- ###评价订单###
 
 URL: /api?m=order_comment  
 POST参数:
