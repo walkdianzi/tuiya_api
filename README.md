@@ -298,7 +298,7 @@ POST参数:
     3. addr_id(地址id)
     4. pay_type(支付方式,int 1.微信 2.支付宝)
     5. number(预定的数量)
-
+    6. order_time_id(预约时间的id)
 返回值:
 
     如果为支付宝支付
