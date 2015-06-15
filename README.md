@@ -233,6 +233,22 @@ URL: /api?m=get_qiniu_token
 POST参数:
     
     1. image_name(图片名有MD5生产的32位字符串)
+    
+返回值:
+    
+    1. token
+    得到token后用七牛的sdk发起请求，
+    imageDataBf = 图片的data
+    _imageName = 图片名
+    QNUploadOption *opt = [[QNUploadOption alloc] initWithMime:@"image/jpeg" progressHandler:nil params:@{ @"x:sid":[[Constant instance] session] } checkCrc:NO cancellationSignal:nil];
+                
+    QNUploadManager *upManager = [[QNUploadManager alloc] init];
+    [upManager putData:imageDataBf key:_imageName token:token
+            complete: ^(QNResponseInfo *info, NSString *key, NSDictionary *resp) {
+                
+                        NSLog(@"%@", info);
+                        NSLog(@"%@", resp);（这里返回头像url）
+                }
 -----
 
 #服务相关部分#
