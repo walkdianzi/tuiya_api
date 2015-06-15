@@ -335,6 +335,17 @@ POST参数:
     5. timestamp(时间戳，防重发)
     6. sign(商家根据微信开放平台文档对数据做的签名)
 
+- ###得到支付信息###
+
+URL: /api?m=get_pay_info
+POST参数:
+    1. order_id(订单id)
+
+返回值:
+    
+    跟提交订单返回的一样
+
+
 - ###订单列表###
 
 URL: /api?m=order_list  
