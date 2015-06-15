@@ -339,6 +339,7 @@ POST参数:
 
 URL: /api?m=get_pay_info
 POST参数:
+
     1. order_id(订单id)
 
 返回值:
