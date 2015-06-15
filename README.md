@@ -227,6 +227,12 @@ POST参数:
 
     1. avatar(新头像url)
     
+- ###得到token上传头像###
+
+URL: /api?m=get_qiniu_token
+POST参数:
+    
+    1. image_name(图片名有MD5生产的32位字符串)
 -----
 
 #服务相关部分#
