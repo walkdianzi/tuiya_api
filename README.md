@@ -294,6 +294,7 @@ POST参数:
 
 - ###服务项目下单时的信息###
 
+
 URL: /api?m=serve_order_info  
 POST参数:
 
@@ -312,6 +313,7 @@ POST参数:
 
 
 - ###提交订单###
+
 URL: /api?m=submit_order  
 POST参数:
 
@@ -338,6 +340,7 @@ POST参数:
 - ###得到支付信息###
 
 URL: /api?m=get_pay_info
+
 POST参数:
 
     1. order_id(订单id)
